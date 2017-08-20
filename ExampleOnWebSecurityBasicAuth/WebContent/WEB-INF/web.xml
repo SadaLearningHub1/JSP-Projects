@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>ExampleOnWebSecurityBasicAuth</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <servlet-name>BasicAuthServlet</servlet-name>
+    <servlet-class>basicauth.BasicAuthServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BasicAuthServlet</servlet-name>
+    <url-pattern>/BasicAuthServlet</url-pattern>
+  </servlet-mapping>
+  <security-constraint>
+  	<web-resource-collection>
+  		<web-resource-name>Basic security test</web-resource-name>
+  		<url-pattern>/BasicAuthServlet</url-pattern>
+  		<http-method>GET</http-method>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>student</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  <login-config>
+  	<auth-method>BASIC</auth-method>
+  	<realm-name>myrealm</realm-name>
+  </login-config>
+</web-app>

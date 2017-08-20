@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>ExampleOnWebSecurityFormAuth</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+   <servlet>
+    <description></description>
+    <display-name>FormAuthServlet</display-name>
+    <servlet-name>FormAuthServlet</servlet-name>
+    <servlet-class>formauth.FormAuthServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FormAuthServlet</servlet-name>
+    <url-pattern>/FormAuthServlet</url-pattern>
+  </servlet-mapping>
+  <security-constraint>
+  	<web-resource-collection>
+  		<web-resource-name>Form security test</web-resource-name>
+  		<url-pattern>/FormAuthServlet</url-pattern>
+  		<http-method>GET</http-method>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>student</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  <login-config>  	
+  	<auth-method>FORM</auth-method>
+  	<form-login-config>
+  		<form-login-page>/FormBasedLoginPage.jsp</form-login-page>
+  		<form-error-page>/FormBasedError.jsp</form-error-page>
+  	</form-login-config>
+  </login-config>
+</web-app>
