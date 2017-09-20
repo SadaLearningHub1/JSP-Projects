@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>ExampleOnWebSecurityClientCertificateAuth</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+   <servlet>
+    <servlet-name>ClientAuthServlet</servlet-name>
+    <servlet-class>clientcertificate.ClientAuthServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientAuthServlet</servlet-name>
+    <url-pattern>/ClientCertificateAuthServlet</url-pattern>
+  </servlet-mapping>
+  
+  <security-constraint>
+  	<web-resource-collection>
+  		<web-resource-name>Client Certificate Authentication Test</web-resource-name>
+  		<url-pattern>/ClientCertificateAuthServlet</url-pattern>
+  		<http-method>GET</http-method>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>student</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  <login-config>  	
+  	<auth-method>FORM</auth-method>
+  	<form-login-config>
+  		<form-login-page>/ClientCertificateLoginPage.jsp</form-login-page>
+  		<form-error-page>/ClientCertificateError.jsp</form-error-page>
+  	</form-login-config>
+  </login-config>
+</web-app>
